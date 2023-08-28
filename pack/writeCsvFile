@@ -1,0 +1,10 @@
+import csv
+
+def writeCSVFile(file: str, data: dict) -> None:
+    field = ["status", "id", "name"]
+    with open(file, "w", encoding="utf8") as f:
+        writer = csv.DictWriter(f, delimiter=';', fieldnames=field, lineterminator="\r")
+        writer.writeheader()
+        for item in data:
+            for it in data[item]:
+                writer.writerow({field[0]: item, field[1]: it, field[2]: data[item][it]})
